@@ -12,3 +12,6 @@
 # 테스트(VS Code 터미널): `pytest exercises/week1/tests/test_w1d1.py -k robot_card`
 
 # TODO: 이 줄 아래에 코드를 작성하세요
+print("Robot: RR-01")
+print("Type: Rail robot")
+print("Status: READY")

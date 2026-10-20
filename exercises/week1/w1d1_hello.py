@@ -8,3 +8,4 @@
 # 테스트(VS Code 터미널): `pytest exercises/week1/tests/test_w1d1.py -k hello`
 
 # TODO: 이 줄 아래에 코드를 작성하세요
+print("Hello, ROS!")
