@@ -10,6 +10,10 @@
 
 **변수**는 값에 붙인 이름입니다. 이름표를 붙인 상자라고 생각해 보세요.
 
+오늘도 1일차처럼 예제를 `playground.py`에서 실행합니다. VS Code 터미널에 `code playground.py`를 입력해서 `playground.py`를 여세요. **새 예제를 시작할 때마다 `playground.py`의 이전 내용을 모두 지우고 새 예제만 입력하세요.** **Ctrl + S**로 저장한 뒤 VS Code 터미널에서 `python3 playground.py`를 실행하세요. `>>>`가 붙은 예제와 `>>>`에 입력하라는 예제는 파일이 아니라 대화형 모드(`python3`)에서 실행합니다.
+
+`playground.py`의 내용을 아래 코드로 바꾸고 실행하세요. `RR-01`과 `0.5`가 나와야 합니다.
+
 ```python
 speed = 0.5
 robot_name = "RR-01"
@@ -79,7 +83,8 @@ VS Code 터미널에 `python3`를 입력하고 Enter를 누르세요. `>>>`가 �
 파이썬도 수학의 계산 순서를 따릅니다. `+`, `-`보다 `*`, `/`를 먼저 계산합니다. 괄호로 순서를 분명하게 나타내세요.
 
 ```python
-average = (10 + 20) / 2     # 15.0
+average = (10 + 20) / 2
+print(average)     # 15.0
 ```
 
 ### `//`와 `%` 함께 사용하기
@@ -90,11 +95,12 @@ average = (10 + 20) / 2     # 15.0
 total = 135
 hours = total // 60      # 2  (온전한 시간의 수)
 minutes = total % 60     # 15 (남은 분)
+print(hours, minutes)    # 2 15
 ```
 
 ### `math` 모듈
 
-**모듈**은 관련 도구를 모아 둔 묶음입니다. `math` 모듈은 파이썬에 기본으로 들어 있으므로 따로 설치하지 않습니다. 파일 맨 위에 `import math`를 쓰면 사용할 수 있습니다. `math.pi`처럼 점(`.`)을 찍으면 `math` 안의 도구를 고를 수 있습니다. `math.pi`는 원주율이고 `math.sqrt(16)`은 16의 제곱근입니다. VS Code에서 `playground.py`의 맨 위에 `import math`를 넣으세요.
+**모듈**은 관련 도구를 모아 둔 묶음입니다. `math` 모듈은 파이썬에 기본으로 들어 있으므로 따로 설치하지 않습니다. 파일 맨 위에 `import math`를 쓰면 사용할 수 있습니다. `math.pi`처럼 점(`.`)을 찍으면 `math` 안의 도구를 고를 수 있습니다. `math.pi`는 원주율이고 `math.sqrt(16)`은 16의 제곱근입니다. `playground.py`의 내용을 아래 코드로 바꾸고 실행하세요. `import math`는 아래처럼 파일 맨 위에 씁니다.
 
 ```python
 import math
@@ -124,11 +130,13 @@ VS Code 터미널에 `python3`를 입력하세요. 파이썬 `>>>` 프롬프트�
 ```python
 int("42")       # 42     문자열 → 정수
 float("3.5")    # 3.5    문자열 → 실수
-str(42)         # "42"   숫자 → 문자열
+str(42)         # '42'   숫자 → 문자열(따옴표는 문자열이라는 표시입니다)
 int(3.9)        # 3      소수 부분을 버립니다(반올림하지 않습니다!)
 round(3.9)      # 4      반올림합니다
 round(3.14159, 2)  # 3.14
 ```
+
+`round()`는 정확히 중간인 값(예: `2.5`)을 가까운 **짝수** 쪽으로 반올림합니다. `round(2.5)`는 `2`이고 `round(3.5)`는 `4`입니다.
 
 문자열이 숫자가 아니면 오류가 납니다.
 
@@ -153,7 +161,7 @@ Robot name: RR-01
 Starting RR-01
 ```
 
-⚠️ 사용자가 숫자를 입력해도 **`input()`은 항상 `str`을 돌려줍니다**.
+⚠️ 사용자가 숫자를 입력해도 **`input()`은 항상 `str`을 돌려줍니다**. `playground.py`의 내용을 아래 코드로 바꾸고 실행하세요. `Distance (m):`에 `10`을 입력하고 Enter를 누르세요.
 
 ```python
 distance = input("Distance (m): ")    # 사용자가 10을 입력합니다
@@ -216,7 +224,7 @@ Speed (m/s): 2.5
 | `"5" + 3`에서 `TypeError: can only concatenate str (not "int") to str`가 나옵니다 | 먼저 자료형을 바꾸세요: `int("5") + 3` |
 | `input()` 값으로 계산하면 이상한 결과가 나옵니다 | `int(input(...))` 또는 `float(input(...))`로 감싸세요 |
 | `print("Battery: {battery}")`가 `{battery}`를 그대로 출력합니다 | `f`가 빠졌습니다: `print(f"Battery: {battery}")` |
-| `Speed = 1` 다음에 `print(speed)`를 실행하면 `NameError`가 나옵니다 | 이름은 대소문자를 구분합니다 |
+| `Speed = 1`로 저장했는데 `print(speed)`에서 `NameError`가 나옵니다 | 이름은 대소문자를 구분합니다. `Speed`와 `speed`는 서로 다른 변수입니다 |
 
 ---
 
@@ -283,6 +291,7 @@ Travel time: 2.50 minutes
    ✔ 마지막 줄은 `Runtime: 2.50 hours`여야 합니다. `python3 exercises/week1/w1d2_battery_runtime.py`를 다시 실행하세요. `Capacity (mAh):`에 `1000`을 입력하세요.
    `Current (mA):`에 `3000`을 입력하세요. 각 값을 입력한 뒤 Enter를 누르세요. `Runtime: 0.33 hours`가 나와야 합니다.
    ✘ **아무것도 나타나지 않으면** 파일에 아직 코드가 없거나 저장하지 않은 것입니다. 3단계로 돌아가세요.
+   ✘ 전류에 `0`을 입력하면 `ZeroDivisionError`(0으로 나눌 수 없음)가, `2.5`처럼 소수를 입력하면 `ValueError`가 나옵니다. 이 연습 문제에서는 0보다 큰 정수만 입력합니다. 코드는 그대로 두고 위의 값으로 다시 실행하세요.
 6. VS Code 터미널에서 [`test_w1d2.py`](../../exercises/week1/tests/test_w1d2.py)로 `w1d2_battery_runtime.py`를 테스트하세요.
    ```bash
    pytest exercises/week1/tests/test_w1d2.py -k battery

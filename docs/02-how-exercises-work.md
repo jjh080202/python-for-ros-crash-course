@@ -299,6 +299,7 @@ python3 -i exercises/week1/w1d3_conditions.py
 | `1 failed, 4 passed` | 거의 다 되었습니다. 실패한 하나를 고치세요 |
 | `5 failed` | 아직 모두 실패합니다. 시작 전에는 정상입니다. 이미 풀었다면 실행 중 오류나 빠진 `return`을 찾아보세요 |
 | `1 error` | 테스트가 파일을 **불러오지도** 못했습니다. `SyntaxError`, `IndentationError`, `ImportError`, `OSError ... reading from stdin`을 찾아보세요 |
+| `6 deselected`만 나오고 `passed`나 `failed`가 없습니다 | 실행한 테스트가 없습니다. `-k` 뒤의 이름에 오타가 있습니다. 수업에 나온 명령을 그대로 다시 입력하세요 |
 
 ### 실패한 테스트 이름
 
@@ -334,6 +335,7 @@ E       assert 'FULL' == 'OK'
 | `스크립트가 10초 안에 끝나지 않았습니다.` / `끝나지 않는 반복문이나 필요 없는 input()이 있는지 확인하세요.` | 끝나지 않는 반복문이나 필요 없는 `input()`이 있습니다 | VS Code 편집기에서 해당 연습 문제 파일을 열고 `while` 조건과 `input()` 호출 개수를 확인하세요 |
 | `ImportError: cannot import name ...` | 함수 이름을 바꾸거나 함수를 지웠습니다 | VS Code 편집기에서 오류 메시지에 나온 연습 문제 파일의 함수 이름을 원래대로 되돌리세요 |
 | `SyntaxError` / `IndentationError` | `:` `)` `"`가 빠졌거나 공백이 잘못되었습니다 | VS Code 편집기에서 오류 메시지에 나온 연습 문제 파일을 열고 표시된 줄 번호로 이동하세요 |
+| `SyntaxError: invalid character '（' (U+FF08)` | 비슷하게 보이지만 파이썬이 사용할 수 없는 문자입니다. 전각 괄호 `（ ）`, 전각 콜론 `：`, 둥근 따옴표 `‘ ’ “ ”`는 문서나 메신저에서 코드를 복사하면 자주 생깁니다 | VS Code 편집기에서 표시된 줄로 이동하세요. 그 문자를 지우고 키보드로 `(` `)` `:` `'` `"`를 다시 입력하세요. **Ctrl + S**로 저장하고 다시 실행하세요 |
 | `OSError: pytest: reading from stdin...` | 함수 파일에 `input()`을 남겨 두었습니다 | 해당 연습 문제 파일에서 필요 없는 `input()`을 지우고 **Ctrl + S**로 저장하세요. 수업의 `python3 -i` 진행 순서를 따르세요 |
 | `프로그램이 예상보다 더 많이 입력을 요청했습니다. (반복문이 제대로 멈춥니까?)` | 주간 과제의 반복문이 멈추지 않습니다 | VS Code 편집기에서 오류 메시지에 나온 주간 과제 파일의 `main()` 안에 있는 `break`를 확인하세요 |
 

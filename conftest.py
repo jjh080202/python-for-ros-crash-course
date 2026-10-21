@@ -22,10 +22,11 @@ def run_script():
     def _run(path: Path, stdin: str = "") -> str:
         try:
             result = subprocess.run(
-                [sys.executable, str(path)],
+                [sys.executable, "-X", "utf8", str(path)],
                 input=stdin,
                 capture_output=True,
                 text=True,
+                encoding="utf-8",
                 timeout=10,
             )
         except subprocess.TimeoutExpired:
