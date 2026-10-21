@@ -12,7 +12,9 @@
     "d2_read",
     "d2_try",
     "d2_explain",
-    "d2_log"
+    "d2_log",
+    "d2_push",
+    "d2_mentor"
   ],
   "log_lines": {
     "2026-10-21": 5
