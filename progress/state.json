@@ -6,6 +6,8 @@
     "d1_read",
     "d1_try",
     "d1_explain",
-    "d1_log"
+    "d1_log",
+    "d1_push",
+    "d1_mentor"
   ]
 }
