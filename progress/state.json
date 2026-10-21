@@ -8,6 +8,13 @@
     "d1_explain",
     "d1_log",
     "d1_push",
-    "d1_mentor"
-  ]
+    "d1_mentor",
+    "d2_read",
+    "d2_try",
+    "d2_explain",
+    "d2_log"
+  ],
+  "log_lines": {
+    "2026-10-21": 5
+  }
 }

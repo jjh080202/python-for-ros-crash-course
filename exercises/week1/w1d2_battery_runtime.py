@@ -18,3 +18,7 @@
 # 테스트(VS Code 터미널): `pytest exercises/week1/tests/test_w1d2.py -k battery`
 
 # TODO: 이 줄 아래에 코드를 작성하세요
+Capacity = int(input("Capacity (mAh):"))
+Current = int(input("Current (mA):"))
+Runtime = Capacity / Current
+print(f"Runtime: {Runtime:.2f} hours")

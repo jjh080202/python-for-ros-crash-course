@@ -17,3 +17,9 @@
 # 테스트(VS Code 터미널): `pytest exercises/week1/tests/test_w1d2.py -k time_format`
 
 # TODO: 이 줄 아래에 코드를 작성하세요
+total_seconds = int(input("Seconds:"))
+hours = total_seconds // 3600
+remaining_seconds = total_seconds % 3600
+minutes = remaining_seconds // 60
+seconds = remaining_seconds % 60
+print(f"{hours} h {minutes} m {seconds} s")
