@@ -6,39 +6,21 @@ on:
   workflow_dispatch:
 
 jobs:
-  # Student forks: run the exercise tests for each week.
-  test:
+  # Student forks: next.py sees GitHub Actions. It writes the progress
+  # table on the run's summary page and runs the tests of every day the
+  # student has started, so a finished day shows a green check.
+  check:
     if: github.event.repository.fork
     runs-on: ubuntu-24.04
-    strategy:
-      fail-fast: false
-      matrix:
-        # Add a week here when it is published.
-        week: [1]
-    name: week ${{ matrix.week }}
+    name: tests and progress
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
       - run: pip install -r requirements.txt
-      - name: Run week ${{ matrix.week }} tests
-        run: pytest -rA --continue-on-collection-errors exercises/week${{ matrix.week }} checkpoints/week${{ matrix.week }}
-
-  # Student forks: write the progress table (python next.py --report)
-  # on the run's summary page, so the mentor sees every step.
-  progress:
-    if: github.event.repository.fork
-    runs-on: ubuntu-24.04
-    name: progress
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-      - run: pip install -r requirements.txt
-      - name: Progress table
-        run: python next.py --report >> "$GITHUB_STEP_SUMMARY"
+      - name: Progress table and tests of the started days
+        run: python next.py
 
   # Course repository: the starter files are meant to fail, so only check
   # that every test file loads without errors.

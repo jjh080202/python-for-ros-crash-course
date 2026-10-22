@@ -379,7 +379,7 @@ $ python3 -i playground.py
    pytest exercises/week1/tests/test_w1d4.py -k steps_until_low
    ```
    ✔ `4 passed, 8 deselected`가 나와야 합니다.
-6. VS Code 터미널에서 `python3 next.py`를 실행하세요. 테스트가 통과했으면 다음 단계가 나타납니다.
+6. 아직 `python3 next.py`를 실행하지 마세요. 아래 **마지막으로: 오늘의 테스트 전체**로 가세요. 추가 도전은 선택입니다. `python3 next.py`는 그 절의 테스트를 실행한 다음에 실행합니다.
 
 ### 추가 도전(선택): `count_multiples(limit, k)`
 
@@ -406,10 +406,10 @@ pytest exercises/week1/tests/test_w1d4.py
 VS Code 터미널에서 `python3 next.py`를 실행하세요. 오늘 남은 단계를 하나씩 안내합니다.
 
 - 수업 내용을 설명할 수 있는지 묻는 질문에 답하세요.
-- 실습 일지를 쓰세요. `python3 next.py`가 오늘 날짜의 일지에 빈칸(- 로 시작하는 줄)을 채웠는지 자동으로 확인합니다.
-- 커밋하고 푸시하세요. 푸시했는지도 자동으로 확인합니다.
-- 마지막으로 멘토와 점검하세요. 점검 질문에 `y`로 답하면 `python3 next.py`가 진도를 GitHub에 자동으로 보냅니다.
+- 실습 일지를 **직접** 쓰세요. `python3 next.py`는 일지를 대신 써 주지 않고, 썼는지만 확인합니다. 제목의 날짜, 오늘 수업, 배운 내용, 연습 문제 표, 겪은 문제, 질문, 공부한 시간을 **모두** 채우세요.
+- 멘토와 점검하세요. 멘토가 확인하면 점검 질문에 `y`로 답하세요.
+- **마지막으로** 커밋하고 푸시하세요. 오늘의 코드, 실습 일지, 진도가 모두 GitHub로 갑니다. 푸시했는지는 다음에 `python3 next.py`를 실행할 때 자동으로 확인합니다.
 
-멘토 점검까지 마치면 오늘 공부는 끝입니다. `python3 next.py`에 **5일차**가 나타나도 오늘은 시작하지 마세요. 다음 학습일에 `python3 next.py`를 실행하고 5일차 수업을 시작하세요.
+푸시까지 마치면 오늘 공부는 끝입니다. `python3 next.py`에 **5일차**가 나타나도 오늘은 시작하지 마세요. 다음 학습일에 `python3 next.py`를 실행하고 5일차 수업을 시작하세요.
 
 **다음:** [5일차: 문자열 다루기 + 주간 과제](day5-strings-and-checkpoint.md)

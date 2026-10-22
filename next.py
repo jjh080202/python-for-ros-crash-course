@@ -2,15 +2,16 @@
 
 VS Code 터미널에서 `python3 next.py`를 실행하면 지금 할 일을 알려 줍니다.
 - 연습 문제와 주간 과제는 테스트 결과로 자동으로 확인합니다.
-- 실습 일지와 커밋/푸시도 자동으로 확인합니다.
+- 실습 일지는 학생이 직접 씁니다. 일지를 썼는지와 커밋/푸시는 자동으로 확인합니다.
 - 테스트로 확인할 수 없는 단계(수업 읽기 등)는 질문으로 확인합니다.
 
 결과는 progress/state.json과 PROGRESS.md에 저장됩니다.
-`python3 next.py --report`는 질문 없이 진도표만 출력합니다(GitHub 자동 테스트에서 사용).
+GitHub 자동 테스트에서 실행하면 질문하지 않습니다. 진도표를 실행 요약에 쓰고, 시작한 일차의 테스트만 실행합니다.
 """
 
 import datetime
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -20,6 +21,7 @@ PROGRESS_DIR = ROOT / "progress"
 STATE_FILE = PROGRESS_DIR / "state.json"
 REPORT_FILE = ROOT / "PROGRESS.md"
 TEST_TIMEOUT = 120  # 초
+ON_GITHUB = bool(os.environ.get("GITHUB_ACTIONS"))  # GitHub 자동 테스트에서 실행 중입니다.
 
 
 def load_json(path, default):
@@ -116,6 +118,43 @@ def log_lines_filled():
     return sum(bullet_has_text(line) for line in text.splitlines())
 
 
+# 일지 양식의 빈칸입니다. 공백을 지운 줄에 남아 있으면 아직 채우지 않은 것입니다.
+LOG_PLACEHOLDERS = ("_주차", "_일차", "(수업제목)", "|통과/실패|", "약_시간",
+                    "Week_", "Day_", "(lessontitle)", "|yes/no|", "About_hours")
+
+
+def is_bullet(line):
+    """`-`로 시작하는 줄이면 True입니다. `---` 같은 구분선은 제외합니다."""
+    line = line.strip()
+    return line.startswith("-") and not (line.count("-") >= 3 and set(line) <= {"-", " ", "\t"})
+
+
+def log_missing():
+    """오늘 일지에서 아직 채우지 않은 곳(제목의 날짜, `## ` 절 제목)의 목록입니다.
+
+    빈칸(`_`, 표의 빈 줄, 빈 `-` 줄)이 하나라도 남은 절과 내용을 모두 지운 절을 셉니다.
+    """
+    today = ROOT / "logs" / f"{datetime.date.today():%Y-%m-%d}.md"
+    if not today.exists():
+        return []
+    missing, sections = [], []
+    for line in today.read_text(encoding="utf-8-sig", errors="replace").splitlines():
+        if line.startswith("# ") and "YYYY-MM-DD" in line:
+            missing.append(MSG["log_title"])
+        elif line.startswith("## "):
+            sections.append((line[3:].strip(), []))
+        elif sections:
+            sections[-1][1].append(line)
+    for title, body in sections:
+        squeezed = ["".join(line.split()) for line in body]
+        bullets = [line for line in body if is_bullet(line)]
+        if (not any(squeezed)  # 절의 내용을 모두 지웠습니다.
+                or any(p in s for s in squeezed for p in LOG_PLACEHOLDERS)
+                or any(not bullet_has_text(line) for line in bullets)):
+            missing.append(title)
+    return missing
+
+
 def log_written(state):
     """오늘 일지에 내용을 적었으면 True입니다.
 
@@ -147,27 +186,74 @@ def pushed():
     return ahead.returncode == 0 and ahead.stdout.strip() == "0"
 
 
-def sync_progress():
-    """진도 파일만 커밋하고 푸시합니다. 멘토 점검 답이 GitHub에도 바로 보이게 합니다."""
-    files = ["progress/state.json", "PROGRESS.md"]
-    if git("add", *files).returncode != 0:
-        print(MSG["sync_commit_failed"])
-        return
-    if git("diff", "--cached", "--quiet", "--", *files).returncode != 0:
-        if git("commit", "-m", MSG["sync_commit"], "--", *files).returncode != 0:
-            print(MSG["sync_commit_failed"])
-            return
-    if git("rev-list", "--count", "@{u}..HEAD").stdout.strip() == "0":
-        return
-    push = git("push")
-    print(MSG["synced"] if push.returncode == 0 else MSG["sync_failed"])
+def started_test_paths(weeks, state):
+    """학생이 시작한 일차(단계를 하나라도 마친 일차)의 테스트 경로입니다. GitHub 자동 테스트에서 사용합니다."""
+    paths = []
+    for week in weeks:
+        for sec in week["sections"]:
+            steps = [s for s in week["steps"] if s["section"] == sec["key"]]
+            if any(s["id"] in state["done"] for s in steps):
+                for s in steps:
+                    if s["kind"] == "test":
+                        paths += [p for p in s["paths"] if p not in paths]
+    return paths
+
+
+def github_check(weeks, state, results, error):
+    """GitHub 자동 테스트에서 실행합니다. 종료 코드가 커밋의 ✅/❌를 정합니다.
+
+    진도표를 실행 요약 페이지에 쓰고, 시작한 일차의 테스트만 실행합니다.
+    아직 시작하지 않은 일차의 연습 문제 때문에 ❌가 나오지 않게 합니다.
+    """
+    # 이 커밋은 이미 푸시된 것입니다. 지금 할 단계가 커밋과 푸시라면 마친 것으로 표시합니다.
+    _, cur = current_step(weeks, state, results)
+    if cur and cur["kind"] == "git":
+        state["done"].append(cur["id"])
+    table = report(weeks, state, results)
+    if error:
+        table = f"> {MSG[error]}\n\n{table}"
+    summary = os.environ.get("GITHUB_STEP_SUMMARY")
+    if summary:
+        with open(summary, "a", encoding="utf-8") as f:
+            f.write(table + "\n")
+    else:
+        print(table)
+
+    paths = started_test_paths(weeks, state)
+    if not paths:
+        print(MSG["ci_none"])
+        return 0
+    cmd = [sys.executable, "-m", "pytest", "-rA", "--continue-on-collection-errors", *paths]
+    return subprocess.run(cmd, cwd=ROOT).returncode
 
 
 def is_done(step, state, results):
     kind = step["kind"]
     if kind == "test":
-        return results is not None and test_passed(step, results)
+        passed = results is not None and test_passed(step, results)
+        # 하루 전체 테스트(질문이 있는 단계)는 통과한 뒤 질문에 y로 답해야 끝납니다.
+        return passed and (not step.get("ask") or step["id"] in state["done"])
     return step["id"] in state["done"]
+
+
+def keep_old_progress(weeks, state):
+    """이전 next.py의 진도를 지금 단계 순서에 맞춥니다.
+
+    - 이전에는 하루 전체 테스트를 묻지 않았습니다. 그 뒤 단계를 이미 마쳤다면 마친 것으로 봅니다.
+    - 이전에는 커밋과 푸시가 멘토 점검보다 먼저였습니다. 같은 일차에 마치지 않은 단계가 앞에 남아 있으면
+      커밋과 푸시를 다시 하게 합니다. 그래야 멘토 점검 답도 GitHub로 갑니다.
+    """
+    for week in weeks:
+        steps = week["steps"]
+        for i, step in enumerate(steps):
+            if step["kind"] == "test" and step.get("ask") and step["id"] not in state["done"]:
+                if any(s["id"] in state["done"] for s in steps[i + 1:]):
+                    state["done"].append(step["id"])
+        for i, step in enumerate(steps):
+            if step["kind"] == "git" and step["id"] in state["done"]:
+                before = [s for s in steps[:i] if s["section"] == step["section"] and s["kind"] in ("manual", "log")]
+                if any(s["id"] not in state["done"] for s in before):
+                    state["done"].remove(step["id"])
 
 
 def current_step(weeks, state, results):
@@ -251,9 +337,10 @@ def main():
     if state is None:
         # 읽을 수 없는 진도 파일을 덮어쓰지 않습니다.
         print(MSG["bad_state"])
-        return
+        # GitHub 자동 테스트에서는 ❌로 알립니다.
+        sys.exit(1 if ON_GITHUB else 0)
     paths = sorted({p for w in weeks for s in w["steps"] if s["kind"] == "test" for p in s["paths"]})
-    if "--report" not in sys.argv:
+    if not ON_GITHUB:
         print(MSG["checking"], flush=True)
     results, error = run_tests(paths)
     # pytest가 실행되면 설치 및 준비가 끝난 것입니다.
@@ -261,12 +348,10 @@ def main():
         for step in week["steps"]:
             if step["kind"] == "setup" and results is not None and step["id"] not in state["done"]:
                 state["done"].append(step["id"])
+    keep_old_progress(weeks, state)
 
-    if "--report" in sys.argv:
-        if error:
-            print(f"> {MSG[error]}\n")
-        print(report(weeks, state, results))
-        return
+    if ON_GITHUB:
+        sys.exit(github_check(weeks, state, results, error))
 
     if error:
         # 테스트 결과를 모르면 진도를 저장하지 않습니다(이미 저장된 진도가 지워지지 않도록).
@@ -277,7 +362,7 @@ def main():
     while True:
         week, step = current_step(weeks, state, results)
         # 실습 일지와 커밋/푸시는 지금 할 단계일 때만 자동으로 확인합니다.
-        if step and step["kind"] == "log" and log_written(state):
+        if step and step["kind"] == "log" and log_written(state) and not log_missing():
             record_log(state)
             state["done"].append(step["id"])
             continue
@@ -292,17 +377,18 @@ def main():
             print(f"\n{MSG['all_done']}")
             break
         print_step(week, step)
-        if step["kind"] == "manual":
+        # 하루 전체 테스트는 통과해도 학생이 직접 실행했는지 묻습니다.
+        if step.get("ask") and (step["kind"] == "manual" or test_passed(step, results)):
             if ask(step["ask"]):
                 state["done"].append(step["id"])
                 save(state, weeks, results)
                 print(MSG["saved"])
-                if step.get("sync"):
-                    sync_progress()
                 continue
             print(f"\n{MSG['come_back']}")
             break
         print(f"\n{MSG['after_' + step['kind']]}")
+        if step["kind"] == "log" and log_missing():
+            print(MSG["log_missing"].format(parts=", ".join(log_missing())))
         break
 
     save(state, weeks, results)

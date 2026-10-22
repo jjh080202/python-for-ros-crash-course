@@ -123,7 +123,8 @@
       "cmd": "pytest exercises/week1/tests/test_w1d1.py",
       "open": [
         "lessons/week1/day1-terminal-and-first-program.md (마지막으로)"
-      ]
+      ],
+      "ask": "VS Code 터미널에서 pytest exercises/week1/tests/test_w1d1.py를 직접 실행해서 2 passed를 확인했습니까?"
     },
     {
       "id": "d1_explain",
@@ -142,19 +143,18 @@
       ]
     },
     {
+      "id": "d1_mentor",
+      "section": "d1",
+      "kind": "manual",
+      "label": "멘토 점검",
+      "ask": "오늘 멘토 점검을 마쳤습니까?"
+    },
+    {
       "id": "d1_push",
       "section": "d1",
       "kind": "git",
       "label": "커밋과 푸시",
       "note": "git add .  →  git commit -m \"Week 1 Day 1\"  →  git push"
-    },
-    {
-      "id": "d1_mentor",
-      "section": "d1",
-      "kind": "manual",
-      "label": "멘토 점검",
-      "ask": "오늘 멘토 점검을 마쳤습니까?",
-      "sync": true
     },
     {
       "id": "d2_read",
@@ -218,7 +218,8 @@
       "cmd": "pytest exercises/week1/tests/test_w1d2.py",
       "open": [
         "lessons/week1/day2-variables-numbers-input.md (마지막으로)"
-      ]
+      ],
+      "ask": "VS Code 터미널에서 pytest exercises/week1/tests/test_w1d2.py를 직접 실행해서 6 passed를 확인했습니까?"
     },
     {
       "id": "d2_explain",
@@ -237,19 +238,18 @@
       ]
     },
     {
+      "id": "d2_mentor",
+      "section": "d2",
+      "kind": "manual",
+      "label": "멘토 점검",
+      "ask": "오늘 멘토 점검을 마쳤습니까?"
+    },
+    {
       "id": "d2_push",
       "section": "d2",
       "kind": "git",
       "label": "커밋과 푸시",
       "note": "git add .  →  git commit -m \"Week 1 Day 2\"  →  git push"
-    },
-    {
-      "id": "d2_mentor",
-      "section": "d2",
-      "kind": "manual",
-      "label": "멘토 점검",
-      "ask": "오늘 멘토 점검을 마쳤습니까?",
-      "sync": true
     },
     {
       "id": "d3_read",
@@ -338,7 +338,8 @@
       "cmd": "pytest exercises/week1/tests/test_w1d3.py",
       "open": [
         "lessons/week1/day3-functions-and-decisions.md (마지막으로)"
-      ]
+      ],
+      "ask": "VS Code 터미널에서 pytest exercises/week1/tests/test_w1d3.py를 직접 실행해서 21 passed를 확인했습니까?"
     },
     {
       "id": "d3_explain",
@@ -357,19 +358,18 @@
       ]
     },
     {
+      "id": "d3_mentor",
+      "section": "d3",
+      "kind": "manual",
+      "label": "멘토 점검",
+      "ask": "오늘 멘토 점검을 마쳤습니까?"
+    },
+    {
       "id": "d3_push",
       "section": "d3",
       "kind": "git",
       "label": "커밋과 푸시",
       "note": "git add .  →  git commit -m \"Week 1 Day 3\"  →  git push"
-    },
-    {
-      "id": "d3_mentor",
-      "section": "d3",
-      "kind": "manual",
-      "label": "멘토 점검",
-      "ask": "오늘 멘토 점검을 마쳤습니까?",
-      "sync": true
     },
     {
       "id": "d4_read",
@@ -448,7 +448,8 @@
       "cmd": "pytest exercises/week1/tests/test_w1d4.py",
       "open": [
         "lessons/week1/day4-loops.md (마지막으로)"
-      ]
+      ],
+      "ask": "VS Code 터미널에서 pytest exercises/week1/tests/test_w1d4.py를 직접 실행해서 12 passed를 확인했습니까?"
     },
     {
       "id": "d4_explain",
@@ -467,19 +468,18 @@
       ]
     },
     {
+      "id": "d4_mentor",
+      "section": "d4",
+      "kind": "manual",
+      "label": "멘토 점검",
+      "ask": "오늘 멘토 점검을 마쳤습니까?"
+    },
+    {
       "id": "d4_push",
       "section": "d4",
       "kind": "git",
       "label": "커밋과 푸시",
       "note": "git add .  →  git commit -m \"Week 1 Day 4\"  →  git push"
-    },
-    {
-      "id": "d4_mentor",
-      "section": "d4",
-      "kind": "manual",
-      "label": "멘토 점검",
-      "ask": "오늘 멘토 점검을 마쳤습니까?",
-      "sync": true
     },
     {
       "id": "d5_read",
@@ -558,7 +558,8 @@
       "cmd": "pytest exercises/week1/tests/test_w1d5.py",
       "open": [
         "lessons/week1/day5-strings-and-checkpoint.md (마지막으로)"
-      ]
+      ],
+      "ask": "VS Code 터미널에서 pytest exercises/week1/tests/test_w1d5.py를 직접 실행해서 15 passed를 확인했습니까?"
     },
     {
       "id": "week_all",
@@ -572,7 +573,8 @@
       "cmd": "pytest exercises/week1",
       "open": [
         "lessons/week1/day5-strings-and-checkpoint.md (마지막으로)"
-      ]
+      ],
+      "ask": "VS Code 터미널에서 pytest exercises/week1를 직접 실행해서 56 passed를 확인했습니까?"
     },
     {
       "id": "cp_read",
@@ -656,7 +658,8 @@
       "cmd": "pytest checkpoints/week1",
       "open": [
         "checkpoints/week1/README.md"
-      ]
+      ],
+      "ask": "VS Code 터미널에서 pytest checkpoints/week1를 직접 실행해서 11 passed를 확인했습니까?"
     },
     {
       "id": "cp_run",
@@ -675,26 +678,18 @@
       ]
     },
     {
+      "id": "cp_mentor",
+      "section": "cp",
+      "kind": "manual",
+      "label": "멘토에게 두 프로그램을 보여 주고 코드 설명",
+      "ask": "멘토에게 두 프로그램이 동작하는 모습을 보여 주고 코드를 설명했습니까?"
+    },
+    {
       "id": "cp_push",
       "section": "cp",
       "kind": "git",
       "label": "커밋과 푸시",
       "note": "git add .  →  git commit -m \"Week 1 checkpoint\"  →  git push"
-    },
-    {
-      "id": "cp_green",
-      "section": "cp",
-      "kind": "manual",
-      "label": "GitHub 최신 커밋에 ✅",
-      "ask": "브라우저에서 GitHub 포크를 열었을 때 최신 커밋 옆에 ✅가 보입니까?"
-    },
-    {
-      "id": "cp_mentor",
-      "section": "cp",
-      "kind": "manual",
-      "label": "멘토에게 두 프로그램을 보여 주고 코드 설명",
-      "ask": "멘토에게 두 프로그램이 동작하는 모습을 보여 주고 코드를 설명했습니까?",
-      "sync": true
     }
   ]
 }

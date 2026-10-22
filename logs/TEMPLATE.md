@@ -1,6 +1,6 @@
 # 실습 일지: YYYY-MM-DD
 
-> 제목의 `YYYY-MM-DD`를 오늘 날짜로 바꾸고, 아래 빈칸을 채운 뒤 **Ctrl + S**로 저장하세요.
+> 이 일지는 **직접** 씁니다. 제목의 `YYYY-MM-DD`를 오늘 날짜로 바꾸고, 아래의 **모든** 칸(`_`, 표, 빈 `-` 줄)을 채운 뒤 **Ctrl + S**로 저장하세요.
 > 이 양식은 VS Code 터미널에서 `cp --update=none logs/TEMPLATE.md logs/$(date +%F).md`로 복사합니다. `logs/TEMPLATE.md`는 고치지 마세요.
 
 ## 오늘 수업

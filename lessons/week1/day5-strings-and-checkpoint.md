@@ -331,7 +331,7 @@ False
    pytest exercises/week1/tests/test_w1d5.py -k is_valid_robot_id
    ```
    ✔ `9 passed, 6 deselected`가 나와야 합니다.
-5. VS Code 터미널에서 `python3 next.py`를 실행하세요. 테스트가 통과했으면 다음 단계가 나타납니다.
+5. 아직 `python3 next.py`를 실행하지 마세요. 아래 **마지막으로: 오늘의 테스트 전체와 이번 주 테스트 전체**로 가세요. 추가 도전은 선택입니다. `python3 next.py`는 그 절의 테스트를 모두 실행한 다음에 실행합니다.
 
 ### 추가 도전(선택): `count_char(text, ch)`
 
@@ -351,7 +351,7 @@ VS Code 터미널에서 [`test_w1d5.py`](../../exercises/week1/tests/test_w1d5.p
 pytest exercises/week1/tests/test_w1d5.py
 ```
 
-✔ **`15 passed`**가 나와야 합니다. VS Code 터미널에서 `python3 next.py`를 실행하세요.
+✔ **`15 passed`**가 나와야 합니다.
 
 그런 다음 VS Code 터미널에서 [`exercises/week1/`](../../exercises/week1/)의 모든 테스트를 실행하세요.
 
@@ -394,6 +394,6 @@ pytest checkpoints/week1
 
 ## 9. 1주차 완료
 
-VS Code 터미널에서 `python3 next.py`를 실행하세요. 남은 단계(직접 실행, 실습 일지, 커밋과 푸시, GitHub의 ✅, 멘토에게 보여 주기)를 하나씩 안내합니다. 모든 단계를 마치면 `python3 next.py`에 🎉가 나타납니다.
+VS Code 터미널에서 `python3 next.py`를 실행하세요. 남은 단계(직접 실행, 실습 일지, 멘토에게 보여 주기, 커밋과 푸시)를 하나씩 안내합니다. 커밋과 푸시가 마지막 단계입니다. 푸시한 뒤 `python3 next.py`를 실행하면 🎉가 나타나고, GitHub의 최신 커밋에는 ✅가 보입니다.
 
 수고하셨습니다! 다음 주에는 리스트, 딕셔너리, 함수의 더 자세한 내용, 파일에서 실제 센서 데이터를 읽는 방법을 배웁니다.
