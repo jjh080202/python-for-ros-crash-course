@@ -14,9 +14,19 @@
     "d2_explain",
     "d2_log",
     "d2_push",
-    "d2_mentor"
+    "d2_mentor",
+    "d1_all",
+    "d2_all",
+    "d3_read",
+    "d3_try",
+    "d3_part4",
+    "d3_all",
+    "d3_explain",
+    "d3_log",
+    "d3_mentor"
   ],
   "log_lines": {
-    "2026-10-21": 5
+    "2026-10-21": 5,
+    "2026-10-22": 5
   }
 }

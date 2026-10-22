@@ -7,6 +7,8 @@
 #   모든 함수를 마친 뒤에는 `pytest exercises/week1/tests/test_w1d3.py`
 
 
+
+
 def battery_status(percent):
     """배터리 잔량에 맞는 상태 단어를 반환하세요.
 
@@ -19,8 +21,17 @@ def battery_status(percent):
     예: battery_status(55)는 "OK"를 반환합니다
     """
     # TODO: 이 줄 아래에 코드를 작성하세요
-    pass
-
+    if percent < 0 or percent >100:
+        return "INVALID"
+    elif percent >= 90:
+        return "FULL"
+    elif percent >= 40:
+        return "OK"
+    elif percent >= 15:
+        return "LOW"
+    else:
+        return "CRITICAL"
+pass
 
 def can_launch(battery_percent, wind_speed, gps_ok):
     """드론이 이륙해도 되면 True, 아니면 False를 반환하세요.
@@ -33,7 +44,10 @@ def can_launch(battery_percent, wind_speed, gps_ok):
     예: can_launch(80, 3.5, True)는 True를 반환합니다
     """
     # TODO: 이 줄 아래에 코드를 작성하세요
-    pass
+    return battery_percent >= 30 and wind_speed <= 8.0 and gps_ok
+
+
+pass
 
 
 def classify_distance(distance_m):
@@ -46,4 +60,10 @@ def classify_distance(distance_m):
     예: classify_distance(1.2)는 "SLOW"를 반환합니다
     """
     # TODO: 이 줄 아래에 코드를 작성하세요
-    pass
+    if distance_m < 0.5:
+        return "STOP"
+    elif distance_m < 2.0:
+        return "SLOW"
+    else:
+        return "GO"
+pass
