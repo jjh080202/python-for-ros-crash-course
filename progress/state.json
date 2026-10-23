@@ -23,10 +23,18 @@
     "d3_all",
     "d3_explain",
     "d3_log",
-    "d3_mentor"
+    "d3_mentor",
+    "d3_push",
+    "d4_read",
+    "d4_try",
+    "d4_all",
+    "d4_explain",
+    "d4_log",
+    "d4_mentor"
   ],
   "log_lines": {
     "2026-10-21": 5,
-    "2026-10-22": 5
+    "2026-10-22": 5,
+    "2026-10-23": 5
   }
 }

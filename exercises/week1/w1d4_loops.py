@@ -18,6 +18,11 @@ def countdown(n):
     힌트: 빈 문자열로 시작해서 for 문 안에서 내용을 붙이세요.
     """
     # TODO: 이 줄 아래에 코드를 작성하세요
+    text = ""
+    for i in range(n, 0, -1):
+        text += str(i) + " "
+    text += "GO!"
+    return text
     pass
 
 
@@ -29,6 +34,10 @@ def sum_to(n):
         sum_to(0)은 0을 반환합니다
     """
     # TODO: 이 줄 아래에 코드를 작성하세요
+    result = 0
+    for i in range(1, n + 1):
+        result += i
+    return result
     pass
 
 
@@ -44,4 +53,9 @@ def steps_until_low(battery, drain_per_step, low_level):
         steps_until_low(10, 5, 20)은 0을 반환합니다     (이미 기준 이하입니다)
     """
     # TODO: 이 줄 아래에 코드를 작성하세요
+    steps = 0
+    while battery > low_level:
+        battery -= drain_per_step
+        steps += 1
+    return steps
     pass
