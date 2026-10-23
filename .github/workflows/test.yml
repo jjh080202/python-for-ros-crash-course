@@ -12,6 +12,7 @@ jobs:
   check:
     if: github.event.repository.fork
     runs-on: ubuntu-24.04
+    timeout-minutes: 10
     name: tests and progress
     steps:
       - uses: actions/checkout@v4

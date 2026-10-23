@@ -3,6 +3,7 @@
   "python.terminal.activateEnvironment": true,
   "terminal.integrated.cwd": "${workspaceFolder}",
   "files.trimTrailingWhitespace": true,
+  "python.analysis.autoImportCompletions": false,
   "[markdown]": {
     "files.trimTrailingWhitespace": false
   }

@@ -188,7 +188,7 @@ pytest exercises/week1/tests/test_w1d1.py
 cp --update=none logs/TEMPLATE.md logs/$(date +%F).md
 ```
 
-VS Code 편집기에서 새 일지 `logs/YYYY-MM-DD.md`(오늘 날짜)를 여세요. 일지는 직접 씁니다. 제목의 `YYYY-MM-DD`를 오늘 날짜로 바꾸고, `## 배운 내용` 아래 첫 `-` 줄에 오늘 한 일을 한 줄 쓰세요(예: `- VS Code와 파이썬을 설치했습니다`). 나머지 칸은 비워 두어도 됩니다. **Ctrl + S**로 저장하세요.
+VS Code 편집기에서 새 일지 `logs/YYYY-MM-DD.md`(오늘 날짜)를 여세요. 일지는 직접 씁니다. 제목의 `YYYY-MM-DD`를 오늘 날짜로 바꾸고, `## 배운 내용` 아래 첫 `- ✏️ …` 줄을 오늘 한 일로 바꾸세요(예: `- VS Code와 파이썬을 설치했습니다`). 제목의 ✏️ 표시도 지우세요. 나머지 ✏️ 줄은 오늘은 그대로 두어도 됩니다. **Ctrl + S**로 저장하세요.
 
 그런 다음 VS Code 터미널에 아래 명령을 순서대로 입력하세요. 일지를 커밋하고 GitHub 포크로 보냅니다.
 
