@@ -9,13 +9,33 @@ import random
 
 def check_guess(secret, guess):
     # TODO: 이 줄 아래에 코드를 작성하세요
-    pass
+    if guess < secret:
+        return "Too low"
+    elif guess > secret:
+        return "Too high"
+    else:
+        return "Correct!"
 
 
 def main():
     # 게임 반복문(README의 2부 2단계 참고)
     # TODO: 이 줄 아래에 코드를 작성하세요
-    pass
+    secret = random.randint(1, 100)
+    tries = 0
+
+    while True:
+        user_input = input("Your guess: ")
+        if not user_input.isdigit():
+            print("Please enter a number.")
+            continue
+
+        guess = int(user_input)
+        tries += 1
+        result = check_guess(secret, guess)
+        print(result)
+        if result == "Correct!":
+            print(f"You got it in {tries} tries!")
+            break
 
 
 # 아래 두 줄은 그대로 두세요. 이 파일을 실행하면 main()을 호출하는 시작 장치입니다.

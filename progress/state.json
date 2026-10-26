@@ -30,11 +30,22 @@
     "d4_all",
     "d4_explain",
     "d4_log",
-    "d4_mentor"
+    "d4_mentor",
+    "d4_push",
+    "d5_read",
+    "d5_try",
+    "d5_all",
+    "week_all",
+    "cp_read",
+    "cp_all",
+    "cp_run",
+    "cp_log",
+    "cp_mentor"
   ],
   "log_lines": {
     "2026-10-21": 5,
     "2026-10-22": 5,
-    "2026-10-23": 5
+    "2026-10-23": 5,
+    "2026-10-26": 5
   }
 }

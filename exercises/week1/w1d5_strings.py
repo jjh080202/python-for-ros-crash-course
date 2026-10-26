@@ -12,6 +12,7 @@ def clean_command(text):
     예: clean_command("  FORWARD \n")는 "forward"를 반환합니다
     """
     # TODO: 이 줄 아래에 코드를 작성하세요
+    return text.strip().lower()
     pass
 
 
@@ -24,6 +25,9 @@ def make_topic_name(robot_name, sensor):
     예: make_topic_name("Rail Robot 1", "LiDAR")는 "/rail_robot_1/lidar"를 반환합니다
     """
     # TODO: 이 줄 아래에 코드를 작성하세요
+    robot_name = robot_name.lower().replace(" ", "_")
+    sensor = sensor.lower().replace(" ", "_")
+    return f"/{robot_name}/{sensor}"
     pass
 
 
@@ -47,4 +51,13 @@ def is_valid_robot_id(robot_id):
           .isalpha(), .isupper(), .isdigit() 메서드를 사용하세요
     """
     # TODO: 이 줄 아래에 코드를 작성하세요
+    if len(robot_id) != 7:
+        return False
+    if not (robot_id[0:2].isalpha() and robot_id[0:2].isupper()):
+        return False
+    if robot_id[2] != "-":
+        return False
+    if not robot_id[3:7].isdigit():
+        return False
+    return True
     pass
