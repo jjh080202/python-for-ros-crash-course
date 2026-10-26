@@ -152,6 +152,8 @@ You got it in 3 tries!
 
 **확인하기:** `python3 checkpoints/week1/guess.py`로 게임을 해 보세요. 그런 다음 `pytest checkpoints/week1 -k guess_game`을 실행하세요. `2 passed, 9 deselected`가 나와야 합니다. 마지막으로 `pytest checkpoints/week1`에서 `11 passed`를 확인하세요.
 
+> ⚠ 프로그램이나 테스트가 끝나지 않고 같은 줄을 계속 출력하거나 아무것도 나오지 않으면 VS Code 터미널에서 **Ctrl + C**를 누르세요. `input("Your guess: ")`가 반복문 **안에** 있는지 확인하세요. 반복문 앞에서 한 번만 입력받으면 같은 추측을 끝없이 반복합니다.
+
 ---
 
 ## 추가 도전(테스트하지 않습니다)

@@ -28,7 +28,7 @@ def test_make_topic_name(robot, sensor, expected):
     [
         ("RR-0042", True), ("WR-1234", True),
         ("rr-0042", False), ("RR0042", False), ("RR-00420", False),
-        ("RR_0042", False), ("R1-0042", False), ("RR-00A2", False), ("", False),
+        ("RR_0042", False), ("R1-0042", False), ("RR-004A", False), ("", False),
     ],
 )
 def test_is_valid_robot_id(robot_id, expected):

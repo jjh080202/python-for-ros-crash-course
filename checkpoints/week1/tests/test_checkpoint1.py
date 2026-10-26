@@ -71,12 +71,19 @@ def test_check_guess(secret, g, expected):
 
 
 def test_guess_game(monkeypatch, capsys):
-    monkeypatch.setattr(guess.random, "randint", lambda a, b: 42)
+    calls = []
+
+    def fake_randint(a, b):
+        calls.append((a, b))
+        return 42
+
+    monkeypatch.setattr(guess.random, "randint", fake_randint)
     monkeypatch.setattr("builtins.input", fake_input(["50", "abc", "25", "42"]))
     guess.main()
     out = capsys.readouterr().out
     for text in ["Too high", "Please enter a number.", "Too low", "Correct!", "You got it in 3 tries!"]:
         assert text in out, f"출력에서 {text!r}을(를) 찾지 못했습니다"
+    assert calls == [(1, 100)], "정답은 반복문 앞에서 random.randint(1, 100)으로 한 번만 고르세요"
 
 
 def test_guess_game_first_try(monkeypatch, capsys):
